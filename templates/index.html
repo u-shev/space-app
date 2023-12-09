@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+    {{ 'Space for Children' }}
+{% endblock %}
+
+{% block content %}
+<main class="container">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <h4 class="display-4 fst-italic">Picture of the day</h4>
+      <div class="row">
+        <div class="col">
+        {% if picture %}
+          <img class="mr-3" width="200" height="250" src="{{ picture }}">
+        {% endif %}
+        {% if video %}
+          <div class="mr-auto">
+            <iframe width="330" height="200"
+              src='https://www.youtube.com/embed/afHfMMC-MJE?rel=0'
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        {% endif %}
+        </div>
+        <div class="col"> {{ info }} </div>
+      </div>
+    </div>
+
+
+  <div class="row mb-2">
+    {% if posts %}
+    {% for post in page_obj %}
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3> {{ post.name }}</h3> 
+          <p class="text-truncate">{{ post.description }}</p>
+          <a href="{% url 'post' post.id %}" class="stretched-link">Continue reading</a>
+          <img  width=200 height=auto src="{{ post.picture.url }}">
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+    <nav aria-label="Search results pages">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        {% for p in page_obj.paginator.page_range %}
+        <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+        {% endfor %}
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  {% endblock %}

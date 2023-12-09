@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}
+    {{ title }} | {{ 'Space for Children' }}
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+  <div class="card-header bg-secondary text-white">
+    <h2>{{ post.name }}</h2>
+  </div>
+  <div class="card-body bg-light">
+    <p class="text-justify">{{ post.description }}</p>
+    <div class="col-auto d-none d-lg-block ">
+      <img width="250" height="300" src="{{ post.picture.url }}">
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row p-1">
+        <div class="col-2">{{ 'Author' }}</div>
+        <div class="col-2">{{ post.author }}</div>
+      </div>
+      <div class="row p-1">
+        <div class="col-2">{{ 'Creation date' }}</div>
+        <div class="col-2">{{ post.date_created|date:"d.m.Y H:i" }}</div>
+      </div>
+      <div class="row p-1">
+        <div class="col-2">{{ 'Views' }}</div>
+        <div class="col-2">{{ post.view_count }}</div>
+      </div>
+      {% if user.is_authenticated and user == post.author %}
+      <div class="row p-1">
+        <div class="col">
+          <a href="{% url 'update_post' post.id %}">{{ 'Update' }}</a>
+            <br>
+          <a href="{% url 'delete_post' post.id %}">{{ 'Delete' }}</a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+.celerybeat-schedule
+.dbsqlite
+/upload
+/__pycache__
+.venv/
+space_app/__pycache__/
+space_app/.env
+dist/
+__pycache__
+.pytest_cache/
+.coverage
+coverage.xml
+*.sqlite3
+db.sqlite3
+space_app/fixtures
+space_app/posts/tests.py
+space_app/users/tests.py
