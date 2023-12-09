@@ -12,4 +12,15 @@ lint:
 	poetry run flake8 space_app
 
 start:
-	poetry run uvicorn space_app.asgi:application 
+	poetry run uvicorn space_app.asgi:application
+
+worker:
+	celery -A space_app worker -l info
+
+beat:
+	celery -A space_app beat -l info
+
+test:
+	poetry run python3 manage.py test
+
+
