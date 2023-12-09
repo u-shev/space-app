@@ -2,6 +2,10 @@ from django.test import TestCase
 from space_app.users.models import User
 from space_app.posts.models import Post
 from django.urls import reverse_lazy
+import json
+
+with open('space_app/fixtures/nasa.json') as file:
+    nasa_data = json.loads(file.read())
 
 
 class TestPostCreate(TestCase):
@@ -71,7 +75,7 @@ class TestDeletePost(TestCase):
 
 class TestPostsList(TestCase):
 
-    fixtures = ['users.json', 'posts.json']
+    nasa_json = nasa_data
 
     def test_list(self):
         response = self.client.get(reverse_lazy('home'))
