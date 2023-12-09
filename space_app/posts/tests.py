@@ -1,5 +1,4 @@
 from django.test import TestCase
-from .views import view_post
 from space_app.users.models import User
 from space_app.posts.models import Post
 from django.urls import reverse_lazy
@@ -19,10 +18,10 @@ class TestPostCreate(TestCase):
         response = self.client.get(reverse_lazy('create_post'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Post.objects.all().count(), 2)
-        post = Post.objects.create(name = 'post',
-             description = "The moon is wonderful!",
-             picture = "test.jpg",
-             author = user,)
+        post = Post.objects.create(name='post',
+                                   description="The moon is wonderful!",
+                                   picture="test.jpg",
+                                   author=user,)
         post = Post.objects.get(pk=3)
         self.assertEqual(Post.objects.all().count(), 3)
         self.assertEqual(post.__str__(), post.name)
@@ -78,9 +77,10 @@ class TestPostsList(TestCase):
         response = self.client.get(reverse_lazy('home'))
         self.assertEqual(response.status_code, 200)
 
+
 class TestViewPost(TestCase):
 
-    fixtures = ['users.json','posts.json']
+    fixtures = ['users.json', 'posts.json']
 
     def test_post_doesnt_exist(self):
         response = self.client.get(reverse_lazy('post',
