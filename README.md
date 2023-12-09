@@ -1,3 +1,7 @@
+[![Tests&Coverage](https://github.com/u-shev/space-app/actions/workflows/tests-coverage.yml/badge.svg)](https://github.com/u-shev/space-app/actions/workflows/tests-coverage.yml)
+[![Linter check](https://github.com/u-shev/space-app/actions/workflows/linter-check.yml/badge.svg)](https://github.com/u-shev/space-app/actions/workflows/linter-check.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/0d1a41e52da3429660b6/maintainability)](https://codeclimate.com/github/u-shev/space-app/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0d1a41e52da3429660b6/test_coverage)](https://codeclimate.com/github/u-shev/space-app/test_coverage)
 ### Space app is a web site for astronomy classes.
 On a main page added a picture of the day - NASA API project, which shows every day a picture (or video)
 and an explanation.
