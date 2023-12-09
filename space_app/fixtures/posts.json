@@ -1,0 +1,26 @@
+[
+    {
+      "model": "posts.post",
+      "pk": 1,
+      "fields": {
+        "name": "The moon",
+        "description": "The moon is wonderful!",
+        "author": 1,
+        "date_created": "2023-09-19T09:58:58.807Z",
+        "picture": "space-app/space_app/fixtures/Yuri_Gagarin_1961_-_Restoration.jpg",
+        "view_count": 1
+      }
+    },
+    {
+      "model": "posts.post",
+      "pk": 2,
+      "fields": {
+        "name": "Yuri Gagarin",
+        "description": "Poekhali!",
+        "author": 2,
+        "date_created": "2023-09-19T09:58:58.807Z",
+        "picture": "space-app/space_app/fixtures/Yuri_Gagarin_1961_-_Restoration.jpg",
+        "view_count": 2
+      }
+    }
+  ]

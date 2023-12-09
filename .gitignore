@@ -12,6 +12,4 @@ __pycache__
 coverage.xml
 *.sqlite3
 db.sqlite3
-space_app/fixtures
-space_app/posts/tests.py
-space_app/users/tests.py
+

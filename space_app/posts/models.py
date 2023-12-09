@@ -20,7 +20,7 @@ class Post(models.Model):
     view_count = models.IntegerField(verbose_name="View Count", default=0)
 
     def __str__(self):
-        return '"%s" by %s' % (self.title, self.author)
+        return self.name
 
     def delete(self, *args, **kwargs):
         self.picture.delete()
