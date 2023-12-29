@@ -3,9 +3,6 @@ from django.urls import reverse_lazy
 from django.test import TestCase
 from space_app.users.models import User
 
-with open('space_app/fixtures/user.json') as file:
-    new_user = json.loads(file.read())
-
 
 class TestCreateUser(TestCase):
 
