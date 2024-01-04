@@ -1,5 +1,5 @@
 from django.db import models
-from space_app.users.models import User
+from users.models import User
 
 
 '''Standart post model, connected to author, file can be added'''

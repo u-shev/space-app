@@ -12,4 +12,6 @@ __pycache__
 coverage.xml
 *.sqlite3
 db.sqlite3
-
+/myenv
+users/__pycache__/
+posts/__pycache__/

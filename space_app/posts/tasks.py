@@ -2,7 +2,7 @@ from django.template import Template, Context
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from space_app.celery import app
-from space_app.posts.models import Post
+from posts.models import Post
 
 
 REPORT_TEMPLATE = """

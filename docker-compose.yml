@@ -5,14 +5,14 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./space-app:/space-app:ro
+      - ./space_app:/space_app
     env_file:
       - ./space_app/.env
 
     command: >
       sh -c "python manage.py makemigrations &&
              python manage.py migrate &&
-             gunicorn -w 5 -b 90.156.225.192:8000 space_app.wsgi"
+             gunicorn -w 5 -b 0.0.0.0:8000 space_app.wsgi"
       
     depends_on:
       - database
@@ -31,21 +31,26 @@ services:
       context: .
     command: celery -A space_app worker -l info
     volumes:
-      - ./project/:/usr/src/app/:ro
+      - ./space_app:/space_app
     env_file:
       - ./space_app/.env
+    links:
+      - redis
     depends_on:
       - redis
       - database
+
 
   celery-beat:
     build:
       context: .
     command: celery -A space_app beat -l info
     volumes:
-      - ./space-app/:/usr/src/app/:ro
-    env_file:
-      - ./space_app/.env
+      - ./space_app:/space_app
+    links:
+      - redis
     depends_on:
       - redis
       - database
+    env_file:
+      - ./space_app/.env
