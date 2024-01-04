@@ -5,14 +5,14 @@ install:
 	poetry install
 
 migrate:
-	poetry run python3 manage.py makemigrations
-	poetry run python3 manage.py migrate
+	poetry run python3 space_app/manage.py makemigrations
+	poetry run python3 space_app/manage.py migrate
 
 lint:
 	poetry run flake8 space_app
 
 start:
-	poetry run uvicorn space_app.asgi:application
+	poetry run gunicorn -w 5 -b 0.0.0.0:8000 space_app.wsgi
 
 worker:
 	celery -A space_app worker -l info

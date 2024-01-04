@@ -1,5 +1,5 @@
 from django.urls import path
-from space_app.posts import views
+from posts import views
 from .views import PostCreateView, PostUpdateView, PostDeleteView
 
 

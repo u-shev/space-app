@@ -46,9 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'space_app',
-    'space_app.users',
-    'space_app.posts',
+    'users',
+    'posts',
+
     'django_bootstrap5',
     'debug_toolbar',
 ]
@@ -160,8 +162,11 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
-CELERY_BROKER_URL = "redis://90.156.225.192:6379/0"
-CELERY_RESULT_BACKEND = "redis://90.156.225.192:6379/0"
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+# BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
+# CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+# CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
 
 
 EMAIL_HOST ='smtp.mail.ru'

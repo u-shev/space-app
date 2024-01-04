@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from space_app.posts.models import Post
+from posts.models import Post
 import aiohttp
 
 
