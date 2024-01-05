@@ -2,6 +2,8 @@ services:
   web-app:
     build:
       context: .
+    expose:
+      - 8000
     ports:
       - "8000:8000"
     volumes:
@@ -19,6 +21,8 @@ services:
 
   database:
     image: postgres:14.6-alpine
+    ports:
+     - 5432:5432
     env_file:
       - ./space_app/.env
 
@@ -54,3 +58,16 @@ services:
       - database
     env_file:
       - ./space_app/.env
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    expose:
+      - 8080
+    ports:
+      - "80:8080"
+    volumes:
+            - ./space-app/static:/var/www/space-app/static
+            - ./space-app/media:/var/www/space-app/media
+    depends_on:
+      - web-app
