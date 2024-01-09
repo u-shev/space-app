@@ -2,8 +2,6 @@ services:
   web-app:
     build:
       context: .
-    expose:
-      - 8000
     ports:
       - "8000:8000"
     volumes:
@@ -67,7 +65,7 @@ services:
     ports:
       - "80:8080"
     volumes:
-            - ./space-app/static:/var/www/space-app/static
-            - ./space-app/media:/var/www/space-app/media
+            - ./static:/var/www/space-app/static
+            - ./media:/var/www/space-app/media
     depends_on:
       - web-app
