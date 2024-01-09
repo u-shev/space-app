@@ -47,12 +47,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_bootstrap5',
+    'debug_toolbar',
+    'cachalot',
+
     'space_app',
     'users',
     'posts',
-
-    'django_bootstrap5',
-    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -95,21 +96,21 @@ WSGI_APPLICATION = 'space_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'HOST': os.getenv('POSTGRES_HOST'),
-#         'NAME': os.getenv('POSTGRES_DB'),
-#         'USER': os.getenv('POSTGRES_USER'),
-#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -163,13 +164,20 @@ LOGIN_URL = '/login/'
 CSRF_TRUSTED_ORIGINS = [
     'https://127.0.0.1',
     'https://localhost',
+    '90.156.225.192',
+
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': "django_redis.cache.RedisCache",
+        'LOCATION': 'redis://redis:6379/1',
+    }
+}
 
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = "redis://redis:6379/0"
-# BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
 # CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
 # CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
 

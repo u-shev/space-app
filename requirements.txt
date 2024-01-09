@@ -11,3 +11,4 @@ gunicorn==21.2.0
 psycopg2-binary==2.9.9
 celery[redis]==5.2.7
 celery==5.2.7
+django-cachalot==2.6.1

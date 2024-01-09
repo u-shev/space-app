@@ -13,7 +13,7 @@ nasa_api = os.getenv('NASA_API')
 
 
 async def get_posts_list():
-    post_list = Post.objects.all()
+    post_list = Post.objects.all().select_related('author')
     posts = [post async for post in post_list]
     return posts
 
