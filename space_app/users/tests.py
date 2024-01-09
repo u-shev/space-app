@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.test import TestCase
-from space_app.users.models import User
+from .models import User
 
 
 class TestCreateUser(TestCase):

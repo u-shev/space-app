@@ -1,12 +1,12 @@
 run:
-	poetry run python manage.py runserver 0.0.0.0:8000
+	poetry run python ./space_app/manage.py runserver 0.0.0.0:8000
 
 install: 
 	poetry install
 
 migrate:
-	poetry run python3 space_app/manage.py makemigrations
-	poetry run python3 space_app/manage.py migrate
+	poetry run python3 ./space_app/manage.py makemigrations
+	poetry run python3 ./space_app/manage.py migrate
 
 lint:
 	poetry run flake8 space_app
@@ -21,9 +21,9 @@ beat:
 	celery -A space_app beat -l info
 
 test:
-	poetry run python3 manage.py test
+	poetry run python3 ./space_app/manage.py test posts users
 
 test-coverage:
-	poetry run coverage run manage.py test
+	poetry run coverage run ./space_app/manage.py test posts users
 	poetry run coverage report -m --include=space_app/* --omit=space_app/settings.py
 	poetry run coverage xml --include=space_app/* --omit=space_app/settings.py

@@ -1,4 +1,4 @@
-.celerybeat-schedule
+celerybeat-schedule
 .dbsqlite
 /upload
 /__pycache__

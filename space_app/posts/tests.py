@@ -1,6 +1,6 @@
 from django.test import TestCase
-from space_app.users.models import User
-from space_app.posts.models import Post
+from .models import User
+from .models import Post
 from django.urls import reverse_lazy
 # import json
 
