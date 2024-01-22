@@ -188,7 +188,7 @@ CSRF_TRUSTED_ORIGINS = [
 CACHES = {
     'default': {
         'BACKEND': "django_redis.cache.RedisCache",
-        'LOCATION': 'redis://redis:6379/1',
+        'LOCATION': 'redis://0.0.0.0:6379/1',
     }
 }
 
