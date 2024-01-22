@@ -188,9 +188,16 @@ CSRF_TRUSTED_ORIGINS = [
 CACHES = {
     'default': {
         'BACKEND': "django_redis.cache.RedisCache",
-        'LOCATION': 'redis://0.0.0.0:6379/1',
+        'LOCATION': 'redis://redis:6379/1',
     }
 }
+if os.environ.get('GITHUB_WORKFLOW'):
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+            "LOCATION": "127.0.0.1:11211",
+        }
+    }
 
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
 CELERY_BROKER_URL = 'redis://redis:6379/0'
