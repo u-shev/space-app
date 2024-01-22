@@ -13,9 +13,7 @@ class TestCreateUser(TestCase):
         user = User.objects.create(first_name='Valentina',
                                    last_name="Tereshkova",
                                    email="tereshkova@mail.ru",
-                                   username="tereshkova",
-                                   password1='pass',
-                                   password2='pass')
+                                   username="tereshkova")
         user = User.objects.get(pk=1)
         self.assertEqual(user.username, "tereshkova")
         self.assertEqual(User.objects.all().count(), 1)
