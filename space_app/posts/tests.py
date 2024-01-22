@@ -29,7 +29,7 @@ class TestPostCreate(TestCase):
         post = Post.objects.get(pk=3)
         self.assertEqual(Post.objects.all().count(), 3)
         self.assertEqual(post.__str__(), post.name)
-        self.assertEqual(post.picture.field.upload_to, 'upload/pictures/')
+        self.assertEqual(post.picture.field.upload_to, 'media/upload/')
 
 
 class TestUpdatePost(TestCase):

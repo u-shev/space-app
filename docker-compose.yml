@@ -1,26 +1,28 @@
 services:
-  web-app:
+  web:
     build:
       context: .
-    ports:
-      - "8000:8000"
     volumes:
       - ./space_app:/space_app
+      - media:/space_app/mediafiles
+      - static:/space_app/staticfiles
     env_file:
       - ./space_app/.env
-
+    expose:
+      - 8000
     command: >
       sh -c "python manage.py makemigrations &&
              python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
              gunicorn -w 5 -b 0.0.0.0:8000 space_app.wsgi"
-      
+
     depends_on:
       - database
 
   database:
     image: postgres:14.6-alpine
-    ports:
-     - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
     env_file:
       - ./space_app/.env
 
@@ -42,11 +44,10 @@ services:
       - redis
       - database
 
-
   celery-beat:
     build:
       context: .
-    command: celery -A space_app beat -l info
+    command: celery -A space_app beat -l
     volumes:
       - ./space_app:/space_app
     links:
@@ -58,14 +59,17 @@ services:
       - ./space_app/.env
 
   nginx:
-    image: nginx:latest
+    build: ./nginx
     restart: always
-    expose:
-      - 8080
     ports:
-      - "80:8080"
+      - 80:80
     volumes:
-            - ./static:/var/www/space-app/static
-            - ./media:/var/www/space-app/media
+      - media:/space_app/mediafiles
+      - static:/space_app/staticfiles
     depends_on:
-      - web-app
+      - web
+
+volumes:
+  postgres-data:
+  static:
+  media:

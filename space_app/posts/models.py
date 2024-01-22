@@ -15,7 +15,7 @@ class Post(models.Model):
                                verbose_name='Author')
     date_created = models.DateTimeField(auto_now_add=True,
                                         verbose_name='Creation date')
-    picture = models.FileField(upload_to='upload/pictures/',
+    picture = models.FileField(upload_to='media/upload/',
                                verbose_name='Upload picture')
     view_count = models.IntegerField(verbose_name="View Count", default=0)
 

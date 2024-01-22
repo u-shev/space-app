@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "whitenoise.runserver_nostatic",
 
     'django_bootstrap5',
     'debug_toolbar',
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -151,6 +153,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+MEDIA_ROOT = BASE_DIR / 'mediafiles'
+MEDIA_URL = '/media/'
 
 FIXTURE_DIRS = ['./space_app/fixtures']
 
@@ -164,7 +170,7 @@ LOGIN_URL = '/login/'
 CSRF_TRUSTED_ORIGINS = [
     'https://127.0.0.1',
     'https://localhost',
-    '90.156.225.192',
+    'https://90.156.225.192',
 
 ]
 
