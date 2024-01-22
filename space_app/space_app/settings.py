@@ -105,6 +105,7 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'PORT': '5432',
     }
 }
 if os.environ.get('GITHUB_WORKFLOW'):
