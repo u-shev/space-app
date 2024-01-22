@@ -14,6 +14,6 @@ class TestCreateUser(TestCase):
                                    last_name="Tereshkova",
                                    email="tereshkova@mail.ru",
                                    username="tereshkova")
-        user = User.objects.get(pk=1)
+        user = User.objects.last()
         self.assertEqual(user.username, "tereshkova")
         self.assertEqual(User.objects.all().count(), 1)
